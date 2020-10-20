@@ -45,7 +45,8 @@ object TpolecatPlugin extends AutoPlugin {
     ScalacOption("-language:existentials,experimental.macros,higherKinds,implicitConversions", addedIn = dotty), // the four options above, dotty style
     ScalacOption("-unchecked"),                                            // Enable additional warnings where generated code depends on assumptions.
     ScalacOption("-Xcheckinit", removedIn = dotty),                                           // Wrap field accessors to throw an exception on uninitialized access.
-    ScalacOption("-Xfatal-warnings"),                                      // Fail the compilation if there are any warnings.
+    ScalacOption("-Xfatal-warnings", removedIn = Some(11)),                                      // Fail the compilation if there are any warnings.
+    ScalacOption("-Wconf:cat=deprecation:ws,any:e", addedIn = Some(12), removedIn = dotty),   // Fail for every warning except deprecations, new in Scala 2.13.2
     ScalacOption("-Xlint", removedIn = Some(11)),                          // Used to mean enable all linting options but now the syntax for that is different (-Xlint:_ I think)
     ScalacOption("-Xlint:adapted-args", addedIn = Some(11), removedIn = dotty),               // Warn if an argument list is modified to match the receiver.
     ScalacOption("-Xlint:by-name-right-associative", addedIn = Some(11), removedIn = Some(13)),   // By-name parameter of right associative operator.
